@@ -4,6 +4,7 @@ import jsonpath
 import config
 import json
 
+
 def get_comment_ids_for_post(postId):
     url = config.base_url_http + config.post_id_url + str(postId)
     response = requests.get(url)
@@ -14,30 +15,12 @@ def get_comment_ids_for_post(postId):
 
     return ids
 
-def test_https_get_any_post_13_comment():
+
+def test_get_any_post_13_comment():
     comment_ids = get_comment_ids_for_post(13)
     url = config.base_url_https + config.post_id_url + '&id=' + str(random.choice(comment_ids))
     response = requests.get(url)
     json_response = response.json()
-    print(url)
-    print(json_response)
-    post_id = jsonpath.jsonpath(json_response, 'postId')
-    id = jsonpath.jsonpath(json_response, 'id')
-    email = jsonpath.jsonpath(json_response, 'email')
-    body = jsonpath.jsonpath(json_response, 'body')
-    assert post_id is not None
-    assert id is not None
-    assert email is not None
-    assert body is not None
-
-
-def test_http_get_any_post_13_comment():
-    comment_ids = get_comment_ids_for_post(13)
-    url = config.base_url_http + config.post_id_url + '&id=' + str(random.choice(comment_ids))
-    response = requests.get(url)
-    json_response = response.json()
-    print(url)
-    print(json_response)
     post_id = jsonpath.jsonpath(json_response, 'postId')
     id = jsonpath.jsonpath(json_response, 'id')
     email = jsonpath.jsonpath(json_response, 'email')

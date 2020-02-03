@@ -1,0 +1,5 @@
+{
+  "userId": 2,
+  "title": "Modified title with PUT",
+  "body": "Modified body with PUT"
+}
