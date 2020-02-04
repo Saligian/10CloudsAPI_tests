@@ -5,6 +5,8 @@ import config
 import json
 
 
+# Return all comment ids for the specified post.
+
 def get_comment_ids_for_post(postId):
     url = config.base_url_http + config.post_id_url + str(postId)
     response = requests.get(url)
@@ -15,6 +17,8 @@ def get_comment_ids_for_post(postId):
 
     return ids
 
+
+# Tests any post 13 comment at random.
 
 def test_get_any_post_13_comment():
     comment_ids = get_comment_ids_for_post(13)

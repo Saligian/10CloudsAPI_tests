@@ -4,6 +4,9 @@ import requests
 import config
 
 
+# According to the tested API documentation adding a new element is only faked to return correct response.
+# The object is not created.
+
 def test_add_new_post():
     url = config.base_url_https + config.posts_url
     f = open('../jsonFiles/NewPost.json', 'r')
@@ -21,6 +24,8 @@ def test_add_new_post():
     assert response.status_code == 201
 
 
+# Due to the object not being created below test will fail.
+
 def test_get_new_post():
     url = config.base_url_https + config.posts_url + '/' + config.new_post_id
     response = requests.get(url)
@@ -35,6 +40,8 @@ def test_get_new_post():
     assert body == ["New post body"]
     assert response.status_code == 200
 
+
+# Due to the object not being created below test will fail.
 
 def test_put_update_new_post():
     url = config.base_url_https + config.posts_url + '/' + config.new_post_id
@@ -53,6 +60,8 @@ def test_put_update_new_post():
     assert response.status_code == 201
 
 
+# Due to the object not being created below test will fail.
+
 def test_get_put_updated_post():
     url = config.base_url_https + config.posts_url + '/' + config.new_post_id
     response = requests.get(url)
@@ -67,6 +76,8 @@ def test_get_put_updated_post():
     assert body == ["Modified body with PUT"]
     assert response.status_code == 200
 
+
+# Due to the object not being created below test will fail.
 
 def test_patch_update_new_post():
     url = config.base_url_https + config.posts_url + '/' + config.new_post_id
@@ -85,6 +96,8 @@ def test_patch_update_new_post():
     assert response.status_code == 201
 
 
+# Due to the object not being created below test will fail.
+
 def test_get_patch_updated_post():
     url = config.base_url_https + config.posts_url + '/' + config.new_post_id
     response = requests.get(url)
@@ -99,6 +112,8 @@ def test_get_patch_updated_post():
     assert body == ["Modified body with PATCH"]
     assert response.status_code == 200
 
+
+# As an idempotent request the DELETE will return a 200 response code even though the resource does not exist.
 
 def test_delete_new_post():
     url = config.base_url_https + config.posts_url + '/' + config.new_post_id
